@@ -42,6 +42,8 @@ services:
 
   portal:
       image: iccbrx/portal_dev:${TAG}
+      #build: 
+        #context: ../pei_v2/front/portal/
       container_name: portal
       networks:
         icc_apps_net:
