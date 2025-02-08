@@ -1,0 +1,4 @@
+## Run
+```
+./generate.bat
+```
