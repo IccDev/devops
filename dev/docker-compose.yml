@@ -4,7 +4,7 @@ services:
       image: iccbrx/${MJIB_NAME}:${TAG}
       container_name: ${MJIB_NAME}_${TAG}
       networks:
-        icc_apps_net:
+        icc_apps_dev_net:
           ipv4_address: ${MJIB_IP}
       ports:
         - ${MJIB_PORT}:${MJIB_PORT}
@@ -25,7 +25,7 @@ services:
       image: iccbrx/${GATEWAY_NAME}:${TAG}
       container_name: ${GATEWAY_NAME}_${TAG}
       networks:
-        icc_apps_net:
+        icc_apps_dev_net:
           ipv4_address: ${GATEWAY_IP}
       ports:
         - ${GATEWAY_PORT}:${GATEWAY_PORT}
@@ -50,13 +50,13 @@ services:
       - ./databases/surreal:/var/lib/surreal
     container_name: ${SURREALDB_NAME}_${TAG}
     networks:
-      icc_apps_net:
+      icc_apps_dev_net:
         ipv4_address: ${SURREALDB_IP}
     ports:
       - ${SURREALDB_PORT}:${SURREALDB_PORT_IN}
 
 networks:
-  icc_apps_net:
+  icc_apps_dev_net:
     ipam:
       driver: default
       config:
