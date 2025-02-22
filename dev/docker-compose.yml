@@ -53,7 +53,7 @@ services:
       icc_apps_dev_net:
         ipv4_address: ${SURREALDB_IP}
     ports:
-      - ${SURREALDB_PORT}:${SURREALDB_PORT_IN}
+      - ${SURREALDB_PORT}:${SURREALDB_PORT}
 
 networks:
   icc_apps_dev_net:
