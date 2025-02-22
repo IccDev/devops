@@ -11,7 +11,7 @@ services:
       environment:
         - GatewayAddress=${GATEWAY_IP}:${GATEWAY_PORT}
         - MjibAddress=${MJIB_IP}:${MJIB_PORT}
-        - MjibDBAddress=${SURREALDB_IP}:${SURREALDB_PORT}
+        - MjibDBAddress=${SURREALDB_IP}:${SURREALDB_PORT_IN}
         - GATEWAY_IP=${GATEWAY_IP}
         - Mjib_DB_NS=${Mjib_DB_NS}
         - Mjib_DB_DB=${Mjib_DB_DB}
@@ -53,7 +53,7 @@ services:
       icc_apps_dev_net:
         ipv4_address: ${SURREALDB_IP}
     ports:
-      - ${SURREALDB_PORT}:${SURREALDB_PORT}
+      - ${SURREALDB_PORT}:${SURREALDB_PORT_IN}
 
 networks:
   icc_apps_dev_net:
