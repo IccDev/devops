@@ -48,7 +48,7 @@ services:
     image: surrealdb/surrealdb:latest
     volumes:
       - ./databases/surreal:/var/lib/surreal
-    container_name: ${SURREALDB_NAME}_${TAG}
+    container_name: ${SURREALDB_NAME}_${TAG}2
     networks:
       icc_apps_dev_net:
         ipv4_address: ${SURREALDB_IP}
