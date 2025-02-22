@@ -13,8 +13,16 @@ services:
         - ${MJIB_PORT}:${MJIB_PORT}
       environment:
         - GatewayAddress=${GATEWAY_IP}:${GATEWAY_PORT}
-        - AnnuaireAddress=${ANNUAIRE_IP}:${ANNUAIRE_PORT}
         - MjibAddress=${MJIB_IP}:${MJIB_PORT}
+        - MjibDBAddress=${SURREALDB_IP}:${SURREALDB_PORT_IN}
+        - GATEWAY_IP=${GATEWAY_IP}
+        - Mjib_DB_NS=${Mjib_DB_NS}
+        - Mjib_DB_DB=${Mjib_DB_DB}
+        - Mjib_ACCESS_METHOD=${Mjib_ACCESS_METHOD}
+        - SURREALDB_ROOT_USER=${SURREALDB_ROOT_USER}
+        - SURREALDB_ROOT_PASSWORD=${SURREALDB_ROOT_PASSWORD}
+      depends_on:
+        - ${SURREALDB_NAME}
 
   gateway:
       #image: iccbrx/${GATEWAY_NAME}:${TAG}
@@ -30,8 +38,9 @@ services:
       environment:
         - GatewayAddress=${GATEWAY_IP}:${GATEWAY_PORT}
         - AnnuaireAddress=${ANNUAIRE_IP}:${ANNUAIRE_PORT}
-      #depends_on:
-      #  - ${ANNUAIRE_NAME}
+        - MjibAddress=${MJIB_IP}:${MJIB_PORT}
+      depends_on:
+        - ${MJIB_NAME}
   surrealdb:
     user: ":" # this is important, if not you will face permission denied issue
     entrypoint: 
@@ -45,23 +54,23 @@ services:
     image: surrealdb/surrealdb:latest
     volumes:
       - ./databases/surreal:/var/lib/surreal
-    container_name: ${SURREALDB_NAME}_${SURREALDB_TAG}
+    container_name: ${SURREALDB_NAME}
     networks:
       icc_apps_net:
         ipv4_address: ${SURREALDB_IP}
     ports:
-      - ${SURREALDB_PORT}:8000
+      - ${SURREALDB_PORT}:${SURREALDB_PORT_IN}
 
-  portal:
+  #portal:
       #image: iccbrx/portal_dev:${TAG}
-      build: 
-        context: ../../pei_v2/front/portal/
-      container_name: portal
-      networks:
-        icc_apps_net:
-          ipv4_address: ${PORTAL_IP}
-      ports:
-      - "5173:3000"
+  #    build: 
+  #      context: ../../pei_v2/front/portal/
+  #    container_name: portal
+  #    networks:
+  #      icc_apps_net:
+  #        ipv4_address: ${PORTAL_IP}
+  #    ports:
+  #    - "5173:3000"
 
 networks:
   icc_apps_net:
