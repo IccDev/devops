@@ -4,7 +4,7 @@ services:
       image: iccbrx/${ANNUAIRE_NAME}:${TAG}
       container_name: ${ANNUAIRE_NAME}
       networks:
-        icc_apps_net:
+        icc_apps_dev_net:
           ipv4_address: ${ANNUAIRE_IP}
       ports:
         - ${ANNUAIRE_PORT}:${ANNUAIRE_PORT}
