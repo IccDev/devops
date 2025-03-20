@@ -1,5 +1,28 @@
 name: icc_apps
 services:
+  annuaire:
+      #image: iccbrx/${ANNUAIRE_NAME}:${TAG}
+      build: 
+        context: ../../pei_server/annuaire
+        target: annuaire
+      container_name: ${ANNUAIRE_NAME}
+      networks:
+        icc_apps_net:
+          ipv4_address: ${ANNUAIRE_IP}
+      ports:
+        - ${ANNUAIRE_PORT}:${ANNUAIRE_PORT}
+      environment:
+        - GatewayAddress=${GATEWAY_IP}:${GATEWAY_PORT}
+        - AnnuaireAddress=${ANNUAIRE_IP}:${ANNUAIRE_PORT}
+        - AnnuaireDatabaseAddress=${SURREALDB_IP}:${SURREALDB_PORT_IN}
+        - GATEWAY_IP=${GATEWAY_IP}
+        - ANNUAIRE_DB_NS=${ANNUAIRE_DB_NS}
+        - ANNUAIRE_DB_DB=${ANNUAIRE_DB_DB}
+        - SURREALDB_ROOT_USER=${SURREALDB_ROOT_USER}
+        - SURREALDB_ROOT_PASSWORD=${SURREALDB_ROOT_PASSWORD}
+      depends_on:
+        - ${SURREALDB_NAME}
+
   mjib:
       #image: iccbrx/${MJIB_NAME}:${TAG}
       build: 
