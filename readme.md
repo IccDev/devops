@@ -22,9 +22,9 @@ docker image ls
 
 ## Tag images
 To tag a local image with ID 'ff8a750b2faa' as 'iccbrx/gateway' with the tag 'dev'  
-docker tag 07b69723de82 iccbrx/gateway:dev
-docker tag 18dd42771c4f iccbrx/mjib:dev
-docker tag 34a93899c717 iccbrx/annuaire:dev
+docker tag 1ef69c0261d2 iccbrx/gateway:dev
+docker tag bbd5fa2533d4 iccbrx/mjib:dev
+docker tag 91b8517f1e33 iccbrx/annuaire:dev
 
 ## Push images
 docker push iccbrx/gateway:dev
