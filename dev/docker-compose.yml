@@ -8,6 +8,10 @@ services:
           ipv4_address: ${PORTAL_IP}
       ports:
       - "5173:3000"
+      depends_on:
+        - gateway
+
+
   annuaire:
       image: iccbrx/${ANNUAIRE_NAME}:${TAG}
       container_name: ${ANNUAIRE_NAME}
@@ -19,7 +23,7 @@ services:
       environment:
         - GatewayAddress=${GATEWAY_IP}:${GATEWAY_PORT}
         - AnnuaireAddress=${ANNUAIRE_IP}:${ANNUAIRE_PORT}
-        - AnnuaireDatabaseAddress=${SURREALDB_IP}:${ANNUAIRE_DB_PORT}
+        - AnnuaireDatabaseAddress=${SURREALDB_IP}:${SURREALDB_PORT_IN}
         - GATEWAY_IP=${GATEWAY_IP}
         - ANNUAIRE_DB_NS=${ANNUAIRE_DB_NS}
         - ANNUAIRE_DB_DB=${ANNUAIRE_DB_DB}
