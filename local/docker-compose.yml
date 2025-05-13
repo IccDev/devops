@@ -37,7 +37,7 @@ services:
       environment:
         - GatewayAddress=${GATEWAY_IP}:${GATEWAY_PORT}
         - MjibAddress=${MJIB_IP}:${MJIB_PORT}
-        - MjibDBAddress=${SURREALDB_IP}:${SURREALDB_PORT_IN}
+        - MjibDBAddress=${SURREALDB_NAME}:${SURREALDB_PORT_IN}
         - GATEWAY_IP=${GATEWAY_IP}
         - Mjib_DB_NS=${Mjib_DB_NS}
         - Mjib_DB_DB=${Mjib_DB_DB}
